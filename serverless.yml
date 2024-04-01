@@ -24,6 +24,12 @@ provider:
   name: aws
   runtime: nodejs18.x
   region: us-east-2
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:*
+      Resource:
+        - arn:aws:dynamodb:us-east-2:381492256034:table/test1
   #profile: serverless
   apiGateway:
     shouldStartNameWithService: true
@@ -86,9 +92,29 @@ functions:
       - http:
           path: get-data
           method: get
+  getEndpointFromBD:
+    handler: handler.getEndpointFromBD
+    events:
+      - http:
+          path: get-data-fromBD
+          method: get
   postEndpoint:
     handler: handler.postEndpoint
     events:
       - http:
           path: store-data
           method: post
+
+resources:
+  Resources:
+    Test1:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: test1
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH

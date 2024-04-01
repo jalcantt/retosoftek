@@ -3,9 +3,7 @@
 const querystring = require("querystring")
 
 const axios = require('axios');
-const swapi_es = require('./swapi_es.json');
-
-const swapi = require('swapi-node');
+const { v4 } = require("uuid");
 const AWS = require('aws-sdk');
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 
@@ -76,6 +74,26 @@ module.exports.getEndpoint = async () => {
   }
 };
 
+module.exports.getEndpointFromBD = async () => {
+  try {
+    const dynamodb = new AWS.DynamoDB.DocumentClient();
+
+    const result = await dynamodb.scan({ TableName: "test1" }).promise();
+  
+    const dto = result.Items;
+
+    return {
+      statusCode: 200,
+      body: JSON.stringify(dto)
+    };
+  } catch (error) {
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: 'Error al obtener los datos de SWAPI' })
+    };
+  }
+};
+
 
 module.exports.postEndpoint = async (event) => {
 
@@ -84,7 +102,7 @@ module.exports.postEndpoint = async (event) => {
 
     // Extraer los datos del cuerpo de la solicitud
     const datos = {
-      id: body.url.split('/').slice(-2, -1)[0],
+      id: v4(),
       nombre: body.url,
       nombre: body.nombre,
       altura: body.altura,
@@ -100,7 +118,7 @@ module.exports.postEndpoint = async (event) => {
 
  // Almacenar los datos en DynamoDB
     await dynamodb.put({
-      TableName: 'test',
+      TableName: 'test1',
       Item: datos
     }).promise();
 
@@ -126,7 +144,7 @@ async function obtenerDatosSWAPI() {
       const response = await axios.get('https://swapi.dev/api/people/');
       const data = response.data.results.map(personaje => {
           return {
-              id: personaje.url.split('/').slice(-2, -1)[0], 
+              id: personaje.id, 
               url:personaje.url,
               nombre: personaje.name,
               altura: personaje.height,
