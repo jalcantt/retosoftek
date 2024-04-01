@@ -87,19 +87,19 @@ functions:
           method: POST
           path: /user
   getEndpoint:
-    handler: handler.getEndpoint
+    handler: src/getEndpoint.getEndpoint
     events:
       - http:
           path: get-data
           method: get
   getEndpointFromBD:
-    handler: handler.getEndpointFromBD
+    handler: src/getFromBd.getEndpointFromBD
     events:
       - http:
           path: get-data-fromBD
           method: get
   postEndpoint:
-    handler: handler.postEndpoint
+    handler: src/postEndpoint.postEndpoint
     events:
       - http:
           path: store-data
