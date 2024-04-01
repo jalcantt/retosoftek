@@ -1,0 +1,81 @@
+{
+    "personajes": [
+      {
+        "nombre": "Luke Skywalker",
+        "altura": "172",
+        "peso": "77",
+        "color_pelo": "rubio",
+        "color_piel": "fair",
+        "color_ojos": "blue",
+        "fecha_nacimiento": "19BBY",
+        "genero": "masculino",
+        "peliculas": [
+          "Una nueva esperanza",
+          "El imperio contraataca",
+          "El retorno del Jedi",
+          "La amenaza fantasma",
+          "El ataque de los clones",
+          "La venganza de los Sith"
+        ],
+        "especies": ["Humano"]
+      },
+      {
+        "nombre": "Leia Organa",
+        "altura": "150",
+        "peso": "49",
+        "color_pelo": "castaño",
+        "color_piel": "light",
+        "color_ojos": "brown",
+        "fecha_nacimiento": "19BBY",
+        "genero": "femenino",
+        "peliculas": [
+          "Una nueva esperanza",
+          "El imperio contraataca",
+          "El retorno del Jedi",
+          "La amenaza fantasma",
+          "El ataque de los clones",
+          "La venganza de los Sith"
+        ],
+        "especies": ["Humano"]
+      }
+    ],
+    "planetas": [
+      {
+        "nombre": "Tatooine",
+        "diametro": "10465",
+        "periodo_rotacion": "23",
+        "periodo_orbital": "304",
+        "gravedad": "1",
+        "poblacion": "200000",
+        "clima": "árido",
+        "terreno": "desierto",
+        "agua_superficie": "1",
+        "residentes": [
+          "Luke Skywalker",
+          "C-3PO",
+          "Darth Vader"
+        ],
+        "peliculas": [
+          "Una nueva esperanza",
+          "El retorno del Jedi",
+          "La amenaza fantasma",
+          "El ataque de los clones",
+          "La venganza de los Sith"
+        ]
+      },
+      {
+        "nombre": "Alderaan",
+        "diametro": "12500",
+        "periodo_rotacion": "24",
+        "periodo_orbital": "364",
+        "gravedad": "1",
+        "poblacion": "2000000000",
+        "clima": "temperado",
+        "terreno": "montañoso",
+        "agua_superficie": "40",
+        "residentes": ["Leia Organa", "Bail Prestor Organa", "Raymus Antilles"],
+        "peliculas": ["Una nueva esperanza"]
+      }
+    ]
+  }
+  
